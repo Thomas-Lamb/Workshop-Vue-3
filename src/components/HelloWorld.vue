@@ -1,13 +1,6 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>{{ msg }} {{ msg2 }}</h1>
+  <h2 v-if="test"> {{ test.tata }}  {{ test.tutu }}</h2>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
@@ -20,7 +13,7 @@ const count = ref(0)
   <p>
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
+    >create-vue</a
     >, the official Vue + Vite starter
   </p>
   <p>
@@ -30,6 +23,38 @@ const count = ref(0)
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
+
+<script setup lang="ts">
+  import { ref, onMounted } from 'vue'
+
+  interface Toto {
+    tata: string
+    tutu: number
+  }
+
+  interface Props {
+    msg: string
+    msg2?: string
+    test?: Toto
+  }
+
+
+  const props = withDefaults(defineProps<Props>(), {
+    msg2: 'z'
+  })
+
+  onMounted(() => {
+    console.log(props.msg2)
+    toto()
+  })
+
+  function toto() {
+    console.log("toto")
+  }
+  const count = ref(0)
+</script>
+
+
 
 <style scoped>
 .read-the-docs {

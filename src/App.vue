@@ -1,30 +1,73 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+      <div id="spinnerApp"></div>
+      <ToastComponent
+          ref="codeEmpty"
+          id="main_toast"
+          title="Error"
+          :position="position"
+          cssClass="e-toast-danger"
+      ></ToastComponent>
+      <ToastComponent
+          ref="codeEmpty"
+          id="center_toast"
+          title="Success"
+          :showCloseButton=true
+          :position="positionCenter"
+          cssClass="e-toast-danger"
+      ></ToastComponent>
+      <ToastComponent
+          ref='swToast'
+          id='sw_Toast'
+          :position="positionCenter"
+          :showCloseButton=true
+          :animation='animation'
+          :buttons='button'
+      ></ToastComponent>
+      <Login url-login="https://dev-qbv2-tla.ennovia.local/api/login"/>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup lang="ts">
+import Login from "./components/login/Login.vue";
+import { ToastComponent } from "@syncfusion/ej2-vue-notifications";
+
+let positionCenter : any = { X: "Center", Y: "Top"}
+let position : any = { X: "Right", Y: "Top"}
+let animation: any =
+    {
+        show: { effect: "Fade Zoom In" },
+        hide: { effect: "Slide Left Out" },
+    }
+let button: any =
+    [{
+        model: { content: "refresh" },
+        click: null
+    }, {
+        model: { content: "reply" }
+    }]
+
+</script>
+
+<style>
+/*@import '@/assets/sass/app.scss';
+@import '../node_modules/pdfjs-dist/web/pdf_viewer.css';*/
+
+#app {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+
+@media print
+{
+  *
+  {
+    display: none;
+  }
+  canvas
+  {
+    display: inline;
+  }
 }
 </style>

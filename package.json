@@ -13,7 +13,14 @@
     "serve": "vite preview --port 80"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "@syncfusion/ej2-base": "^23.1.40",
+    "@syncfusion/ej2-popups": "^23.1.38",
+    "@syncfusion/ej2-vue-buttons": "^23.1.39",
+    "@syncfusion/ej2-vue-inputs": "^23.1.38",
+    "@syncfusion/ej2-vue-notifications": "^23.1.36",
+    "axios": "^1.5.1",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vite-pwa/assets-generator": "^0.0.10",
