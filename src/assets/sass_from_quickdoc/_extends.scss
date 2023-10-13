@@ -1,0 +1,602 @@
+body {
+    touch-action: none;
+}
+.container-fluid {
+    padding-left: 2px!important;
+    padding-right: 2px!important;
+    //margin-top: 2px!important;
+}
+.ml-t {
+    padding-left: 15px;
+    padding-top: 5px ;
+    border-bottom: 1px solid lightgray;
+}
+.df-t {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bt-t {
+    border-bottom: 1px solid lightgray;
+}
+
+#percentageFavorisServiceWorkerHeader {
+    position: absolute!important;
+}
+#listFavorisNotBlob {
+    width:100%;
+    overflow-y: auto;
+    height: 40vh;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    table {
+        width: 100%;
+    }
+}
+
+#listview .e-listview {
+    height: 24px;
+    width: 30px;
+}
+.hoverSplit:hover #buttonUp{
+    background: #fff;
+    border: 1px solid rgba(227,22,91,.5);
+    opacity: .9;
+    color: rgba(177, 32, 80, 0.5);
+}
+.hoverSplit:hover #buttonDown{
+    background: #fff;
+    border: 1px solid rgba(227,22,91,.5);
+    opacity: .9;
+    color: rgba(177, 32, 80, 0.5);
+}
+#buttonUp {
+    margin-bottom:40px;
+    margin-left: -48px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    z-index: 100000;
+    color:rgba(255,255,255);
+    transform: rotate(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 1px 0 0;
+}
+#buttonDown {
+    margin-top:40px;
+    margin-left: -24.2px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    z-index: 100000;
+    color:#F4F9FD;
+    transform: rotate(270deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 1px 0 0;
+}
+.e-list-text {
+    text-align: left;
+}
+.boxData {
+    min-width: 300px;
+    max-width: 300px;
+    height: 30px;
+    background: lightgray;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#favoris-content li {
+    height: auto;
+}
+#listViewFile li {
+    height: auto;
+}
+#listViewFileMobile li {
+    height: auto;
+}
+#FavorisList li {
+    height: auto;
+}
+#historicList li {
+    height: auto;
+}
+#dialog_dialog-content {
+    margin-bottom: 2.5%;
+}
+#dialog_dialog-header {
+    padding-left: 7.5%;
+}
+#headerDialog {
+    margin-top:2%;
+}
+#switchCam {
+    margin-top:2%;
+}
+.disabledIcon {
+    opacity : 0.35;
+    cursor: default!important;
+    pointer-events: none;
+    filter: alpha(opacity=35);
+}
+.e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+    padding-right: 8%;
+    background-color: transparent!important;
+    border-radius: 0;
+    bottom: 0;
+    float: right;
+    height: 0;
+    left: 0;
+    position: relative;
+    width: auto!important;
+    height: auto!important;
+}
+.e-dialog:hover {
+    background: none;
+}
+
+#treeviewFilter .e-list-text {
+    text-align: left;
+}
+#treeviewMobile {
+    margin-top: 5%;
+    overflow-y: scroll;
+}
+#treeviewMobile .e-list-text {
+    text-align: left;
+}
+.e-treeview .e-list-text {
+    width:50%;
+}
+.viewer {
+    width: 100%;
+    margin-left: -270px;
+}
+.viewerFile {
+    margin: 0;
+    left: 5px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.e-sidebar.e-left {
+    position: relative;
+    box-shadow: none;
+}
+#tree {
+    margin-top: 20px;
+    border: none;
+}
+#tree_active {
+    border: 0;
+    background: transparent;
+}
+@font-face {
+    font-family: 'BarlowCondensed-Light';
+    src: url('@/assets/fonts/BarlowCondensed-Light.ttf') format("truetype")
+}
+.BarlowCondensedLight{
+    font-family: BarlowCondensed-Light, serif;
+}
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    margin:0;
+}
+
+/* ------------------------- color all app------------- */
+.textColorWhite {
+    color:white!important;
+}
+.color {
+    color: rgb(77, 69, 69)!important;
+}
+.colorOmbre {
+    color: #2c3e50;
+}
+.e-avatar {
+    color: #2c3e50;
+}
+.headerMobile {
+    display:flex;
+    justify-content:space-evenly;
+    width:100%;
+    height: auto;
+    background:lightgrey;
+    position: relative;
+    top: 0;
+    left:0;
+    z-index: 10001;
+}
+#treeviewFilter {
+    color: aliceblue;
+    overflow: scroll;
+}
+#s {
+    height: 92vh!important;
+    overflow-y: scroll;
+    margin-top: 74px;
+}
+.e-treeview .e-ul {
+   text-align: left;
+}
+.e-btn.e-flat:hover, .e-css.e-btn.e-flat:hover {
+    background: inherit!important;
+    border-color: 0;
+    box-shadow: none;
+    color: inherit!important;
+}
+.e-control, .e-css {
+    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif", "-apple-system", "BlinkMacSystemFont";
+    font-size: 12px;
+    font-weight: normal;
+}
+.e-dialog .e-dlg-content {
+    text-align: justify;
+}
+#filterSearch {
+    width: 100%;
+}
+.search span::before {
+    padding-bottom: 0;
+}
+.searchHeader {
+    width: 100%;
+    min-height:14px!important;
+    z-index: 999!important;
+    color:rgb(77, 69, 69)!important;
+    background: white!important;
+    border-radius: 5px 0 0 5px!important;
+    margin-top: 0.3em!important;
+}
+
+#user-Info {
+    display: flex;
+    margin-top: 100px;
+}
+.settings-content {
+    margin-top: 50px;
+}
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 16.5px 8px 15px 8px;
+    z-index: 10001;
+    border-radius: 0 5px 5px 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+.footerAppBar {
+    /* display: flex;
+    justify-content: flex-start;
+    padding: 5%;*/
+    background:lightgrey!important;
+    padding-left: 5%;
+}
+.footerAppBarQuickApps {
+    background:lightgrey!important;
+    display: flex;
+    justify-content: space-around;
+}
+.flexRows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: inherit;
+    padding-top: 10px;
+}
+.textFooterLarge {
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+.flexIconLarge {
+    margin-top: 20px;
+    flex-direction: row;
+}
+.textFooter {
+    font-size: 0.5em;
+    margin-top: 5px;
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    padding-top: 10px;
+}
+.flexIcon {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+#footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.e-appbar > div:first-child {
+    width: auto!important;
+    height: initial!important;
+}
+#GridFilestring_CheckBoxList {
+    height: auto!important;
+}
+
+.sideBartree {
+    background: white;
+}
+.e-ccul-ele .e-cc {
+    list-style-type: none;
+    text-align: left;
+}
+#GridFile_toolbarItems {
+    top: 0;
+    position: sticky;
+    left: 0;
+    z-index: 1000;
+}
+.e-grid .e-icons {
+    color: #0d83c0 !important;
+}
+#checkRemember .e-checkbox-wrapper .e-frame.e-check, .e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: rgb(13, 131, 192);
+    border-color: transparent;
+}
+.e-frame .e-icons .e-check {
+    color: #0d83c0 !important;
+    background-color: rgb(13, 131, 192);
+    border-color: transparent;
+}
+/* .e-treeview .e-icon-collapsible,
+.e-treeview .e-icon-expandable {
+    color: white;
+} */
+/* .treeName {
+    color:white;
+}
+.e-icons.e-more-vertical-1:before {
+    content: "\e984";
+    color:white;
+}
+.e-clear-icon span{
+    background: black;
+    color: white;
+}*/
+/* -------------------- permet de changer toutes les couleurs des icons ---------------- */
+/* .e-btn-icon {
+    color: rgb(43, 40, 40);
+} */
+.e-icons {
+    color:rgb(43, 40, 40)!important;
+}
+.e-icons2 {
+    color:rgb(255, 255, 255)!important;
+    font-size: 1.2em;
+}
+/* ----------------------------------------------------------------------------------- */
+.e-icons.e-search-3:before {
+    content: "\e275";
+    font-weight: bold;
+}
+.e-icons.e-arrow-left-2:before {
+    content: "\e85b";
+}
+.ej-icon-Notify-1:before {
+    content: "\e704";
+    color:rgb(40, 151, 255)!important;
+}
+.e-list-item  {
+    background: transparent!important;
+}
+/* --------------------------------------------------- */
+.row.content.sidebar-hide .sidebar {
+    left: -300px;
+}
+#js-licensing {
+    display: none;
+}
+.e-icons.e-menu:before {
+    content: "\e99a";
+    font-size: 2.5em;
+
+}
+/* .e-listview .e-list-item {
+    height: 85px;
+    line-height: 1.42857143;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid lightgray;
+} */
+
+/* .e-dlg-header-content {
+    background-image:linear-gradient(to bottom right,#444, #111);
+}
+.e-dlg-content {
+    background-image:linear-gradient(to bottom right,#444, #111);
+} */
+.sf-icon-qr-code---03:before {
+    content: "\e70a";
+    font-size: 70px;
+}
+.sf-arrow-left:before {
+    content: "\e85b";
+}
+.sf-icon-qr-code---04:before {
+    content: "\e70a";
+}
+.displayNone {
+    display: none;
+}
+.e-btn-icon .e-icons .e-icon-right {
+    display: none;
+}
+#avatarMainMobile-popup {
+    display: none;
+}
+#avatarMainUser-popup {
+    display: none;
+}
+#avatarMainMobile {
+    background: transparent;
+    border:0;
+}
+#avatarMainMobile span {
+    border: 3px solid rgb(133, 133, 235)!important;
+}
+#avatarMainMobile span:nth-child(1) {
+    background: white;
+}
+#avatarMainMobile span:nth-child(2) {
+    display: none;
+
+}
+#avatarMainUser {
+    background: transparent;
+}
+#avatarMainUser span {
+    border: 3px solid rgb(133, 133, 235)!important;
+}
+#avatarMainUser span:nth-child(1) {
+    background: white;
+}
+#avatarMainUser span:nth-child(2) {
+    display: none;
+
+}
+#avatarMain {
+    margin-top: 10px;
+}
+#GridFilestring_CheckBoxList {
+    text-align: left;
+}
+#GridFilestring_excelDlg {
+    text-align: left;
+}
+.fontIcon6List {
+    font-size: 1.5em;
+    background-color: transparent;
+    margin-left: -1rem;
+}
+.fontIcon6Favoris {
+    font-size: 1.5em;
+    background-color: transparent;
+
+}
+.sf-icon-favoritesfavorites {
+    font-size: 1.5em!important;
+}
+.e-icons.e-delete-4:before {
+    color:red;
+}
+.iconSize {
+    font-size: 1.2em;
+}
+#selectionToolbar .e-tbar-btn-text {
+    opacity: 0;
+}
+.tableNotOpenViewer > * {
+    opacity: 0.5;
+}
+.tableNotOpenViewer:hover {
+    cursor: not-allowed;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    margin-top: calc(var(--bs-gutter-x) * .5);
+}
+.e-grid .e-frozenheader>.e-table, .e-grid .e-frozencontent>.e-table, .e-grid .e-frozencontent .e-virtualtable>.e-table, .e-grid .e-frozenheader .e-virtualtable>.e-table {
+    border-right-color: #ffffff;
+}
+.e-rhandler .e-rcursor {
+    height: 30px;
+    width: 1px!important;
+    background: lightgray!important;
+}
+.e-navigate-arrow {
+    z-index: 10000;
+}
+/* @media screen and (max-width: 1181px){
+    .iconViewer {
+        display: none;
+    }
+    .e-columnheader {
+        display:none;
+    }
+    .e-virtualtable {
+        height: 100vh;
+    }
+    .e-content {
+        height: 100vh!important;
+    }
+    #mobile {display: block;}
+} */
+
+.highlightnode {
+    background-color: #0d83c0 !important;
+}
+#listviewSetting .e-headertext{
+    font-size: 16px!important;
+    font-weight: lighter!important;
+}
+#listviewSetting .e-headertext{
+    font-size: 16px!important;
+    font-weight: lighter!important;
+}
+#spinnerList  .e-spinner-pane{
+    width: calc(100% - 75%);
+    z-index: 100000;
+}
+
+.e-richtexteditor .e-toolbar-wrapper {
+    background: transparent!important;
+    border: 0!important;
+    display: none!important;
+}
+#navbarGrid2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: lightgray;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+}
+.notifMobileAlert {
+    width: 10px;
+    height: 10px;
+    background: red;
+    position: absolute;
+    top: 75%;
+    border-radius: 50%;
+}
+.e-toast-container {
+    z-index: 1000000!important;
+}
+.e-toast-container .e-toast .e-toast-actions .e-btn {
+    color:white!important;
+}
+.editorParamsToolbarInk {
+    display:none;
+}
