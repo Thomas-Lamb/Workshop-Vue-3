@@ -1,0 +1,111 @@
+body{
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container {
+    visibility: hidden;
+    padding-left: 5%;
+    width: 100%;
+}
+
+.form-support .control_wrapper {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-support #control_wrapper {
+    max-width: 450px;
+    margin: auto;
+}
+
+.form-support .e-error {
+    padding-top: 3px;
+}
+
+.form-support .submit-btn {
+    margin-top: 15px;
+}
+.form-support .submitBtn .desc {
+    margin: 2% 20% 0% 18%;
+}
+@media only screen and (max-width: 500px) {
+    .form-support .submitBtn .desc {
+        margin: 12px;
+    }
+    .form-support .upload-area,
+    .e-bigger .upload-area {
+        width: 60%;
+    }
+}
+.form-support .submitBtn {
+    position: relative;
+    text-align: center;
+    color: #000;
+}
+.form-support .success .successmsg {
+    border: 0.5px solid green;
+    padding: 10%;
+    color: green;
+}
+
+.form-support .form-title {
+    color: #191e2c;
+    opacity: 0.8;
+    text-align: center;
+}
+#form1 .e-float-input:not(.e-input-group),
+#form1 .e-float-input.e-control-wrapper:not(.e-input-group) {
+    display: inherit;
+}
+
+#submit-btn {
+    background-color: rgb(13, 131, 192);
+    color: white;
+}
+
+.e-outline.e-float-input,
+.e-outline.e-float-input.e-control-wrapper {
+    margin-top: 0;
+}
+
+.e-checkbox-wrapper,
+.e-css.e-checkbox-wrapper {
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 20px;
+}
+/* .e-checkbox-wrapper.e-primary:hover .e-frame.e-check {
+    csslint allow: adjoining-classes
+} */
+#checkRememeber,
+.e-checkbox-wrapper .e-checkbox:focus + .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-checkbox:focus + .e-frame.e-check {
+    background-color: rgb(13, 131, 192);
+    border-color: transparent;
+    box-shadow: none;
+    color: #fff;
+}
+#checkRemember,
+.e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: rgb(13, 131, 192);
+    border-color: transparent;
+    color: #fff;
+}
+
+#checkRemember .e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: rgb(13, 131, 192);
+    border-color: transparent;
+    color: #fff;
+}
+
+#recupPassword, #oauthMicrosoft, #oauthGoogle {
+    color: #0d83c0;
+}
+
+#recupPassword:disabled, #oauthMicrosoft:disabled, #oauthGoogle:disabled {
+     color: #a3a3a3;
+}

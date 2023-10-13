@@ -1,0 +1,395 @@
+@media screen and (min-width: 600px) {
+    .flexColumn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        height: inherit;
+        padding-top: 10px;
+    }
+    .textFooter {
+        margin-left: 10px;
+        font-size: 0.8em;
+    }
+    .flexIcon {
+        margin-top: 20px;
+        flex-direction: row;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) {
+    html, body {
+        height: 100%;
+        overflow-y: scroll;
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+    }
+    
+    #header {
+        display: none;
+    }
+
+    #headerMobileid {
+        display: flex;
+    }
+    #headerMobile {
+        display: inherit;
+    }
+    #listViewMobile {
+        display: inherit;
+        position: relative;
+    }
+    #footerMobile {
+        display: inherit;
+    }
+    #listPage {
+        position: relative;
+    }
+    #treeview {
+        overflow-y: scroll!important;
+    }
+    .sideInfo {
+        margin-top: 0;
+    }
+    #user-Info {
+        margin-top: 20px;
+    }
+    #filterSectionHeader {
+        background: lightgray;
+    }
+    #toggleList {
+        background: transparent!important;
+        border: 0!important;
+        box-shadow:inherit!important;
+    }
+    #contentContenair {
+        padding: inherit!important;
+    }
+    #navbarGrid2 {
+        background: transparent;
+    }
+    .flexColumn {
+        flex-direction: column;
+    }
+}
+
+
+/* Smartphones  ----------- */
+@media only screen and (min-width : 321px) {
+    html, body {
+        height: 100%;
+        overflow-y: scroll;
+       /*  overflow-x: hidden; */
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+    }
+    #header {
+        display: none;
+    }
+
+    #headerMobileid {
+        display: flex;
+    }
+    #headerMobile {
+        display: inherit;
+    }
+    #listViewMobile {
+        display: inherit;
+    }
+    #footerMobile {
+        display: inherit;
+    }
+    #listPage {
+        position: relative;
+        
+    }
+    .sideInfo {
+        margin-top: 0;
+    }
+    #user-Info {
+        margin-top: 20px;
+    }
+    #filterSectionHeader {
+        background: lightgray;
+    }
+   /*  #toggleList {
+        background: transparent!important;
+        border: 0!important;
+        box-shadow:inherit!important;
+    } */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-device-width : 320px) and  (max-width : 736px) and (orientation : landscape){
+    html, body {
+        height: 100%;
+        overflow-y: scroll;
+       /*  overflow-x: hidden; */
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+    }
+    #header {
+        display: none;
+    }
+
+    #headerMobileid {
+        display: flex;
+    }
+    #headerMobile {
+        display: inherit;
+    }
+    #listViewMobile {
+        display: inherit;
+    }
+    #footerMobile {
+        display: inherit;
+    }
+    #listPage {
+        position: relative;
+    }
+    .sideInfo {
+        margin-top: 0;
+    }
+    #user-Info {
+        height: 500px;
+        overflow-y: scroll;
+        display: flex;
+        align-items: flex-start;
+    }
+    #settings-content {
+        height: 500px;
+        overflow-y: scroll;
+    }
+    #notification-content {
+        min-height: 500px;
+        overflow-y: scroll;
+    }
+    #footer {
+        z-index: 10002;
+    }
+    #treeview {
+        overflow-y: scroll!important;
+    }
+    #filterSectionHeader {
+        background: lightgray;
+    }
+    #toggleList {
+        background: transparent!important;
+        border: 0!important;
+        box-shadow:inherit!important;
+    }
+    #contentContenair {
+        padding: inherit!important;
+    }
+    #navbarGrid2 {
+        background: transparent;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 481px) and (max-device-width : 1180px) and (orientation : portrait) {
+    html, body {
+        height: 100%;
+        overflow-y: scroll;
+       /*  overflow-x: hidden; */
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+    }
+    #header {
+        display: none;
+    }
+
+    #headerMobileid {
+        display: flex;
+    }
+    #headerMobile {
+        display: inherit;
+    }
+    #listViewMobile {
+        display: inherit;
+    }
+    #listPage {
+        position: relative;
+    }
+    #footerMobile {
+        display: inherit;
+    }
+    .sideInfo {
+        margin-top: 0;
+    }
+    #user-Info {
+        margin-top: 20px;
+    }
+    #treeview {
+        overflow-y: scroll!important;
+    }
+    #filterSectionHeader {
+        background: lightgray;
+    }
+    #toggleList {
+        background: transparent!important;
+        border: 0!important;
+        box-shadow:inherit!important;
+    }
+    .contenairIconLeftBar {
+        font-size: 1.5em;
+    }
+    #buttonFavorisHeaderMobile {
+        font-size: 1em;
+    }
+    .sizeDecoLogo {
+        font-size: 1em;
+    }
+    #contentContenair {
+        padding: inherit!important;
+    }
+    #navbarGrid2 {
+        background: transparent;
+    }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1180px) and (orientation : landscape) {
+    html, body {
+        height: 100%;
+        overflow-y: scroll;
+       /*  overflow-x: hidden; */
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+    }
+    #header {
+        display: none;
+    }
+
+    #headerMobileid {
+        display: flex;
+    }
+    #headerMobile {
+        display: inherit;
+    }
+    #listViewMobile {
+        display: inherit;
+    }
+    #listview-grp {
+        margin-top: 25px;
+    }
+    #listPage {
+        position: relative;
+    }
+    #footerMobile {
+        display: inherit;
+    }
+    .sideInfo {
+        margin-top: 0;
+    }
+    #treeview {
+        overflow-y: scroll!important;
+    }
+    #filterSectionHeader {
+        background: lightgray;
+    }
+    #toggleList {
+        background: transparent!important;
+        border: 0!important;
+        box-shadow:inherit!important;
+    }
+    #contentContenair {
+        padding: inherit!important;
+    }
+    #navbarGrid2 {
+        background: transparent;
+    }
+}
+@media only screen and (min-width : 1181px)  {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+        /* background-image: linear-gradient(to bottom right,rgb(85, 84, 84), #111); */
+        background: white;
+    }
+    #header {
+        display: inherit;
+    }
+
+    #headerMobileid {
+        display: none;
+    }
+
+    #listViewMobile {
+        display: none;
+    }
+    #listview-grp {
+        margin-top: 25px;
+    }
+    #listPage {
+        position: absolute;
+        top:55px;
+    }
+    #treeview > ul{
+        overflow-x: hidden;
+    }
+    #footerMobile {
+        display: none;
+    }
+
+    #listViewMobile {
+        display: none;
+    }
+    .sideInfo {
+        margin-top: 100px;
+    }
+    #filterSectionHeader {
+        background: rgb(255, 255, 255);
+    }
+    #toggleList {
+        background:#fafafa !important;
+        border: 1px solid #fafafa!important;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)!important;
+    } 
+}
+
+@media only screen and (min-device-width : 1181px) and (orientation : landscape) {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        font-family: "Segoe UI","GeezaPro","DejaVu Serif";
+        /* background-image: linear-gradient(to bottom right,rgb(85, 84, 84), #111); */
+        background: white;
+    }
+    #header {
+        display: inherit;
+    }
+
+    #headerMobileid {
+        display: none;
+    }
+
+    #listViewMobile {
+        display: none;
+    }
+    #listview-grp {
+        margin-top: 25px;
+    }
+    #listPage {
+        position: absolute;
+        top:55px;
+    }
+    #treeview > ul{
+        overflow-x: hidden;
+    }
+    #footerMobile {
+        display: none;
+    }
+
+    #listViewMobile {
+        display: none;
+    }
+    .sideInfo {
+        margin-top: 100px;
+    }
+    #filterSectionHeader {
+        background: rgb(255, 255, 255);
+    }
+    #toggleList {
+        background:#fafafa !important;
+        border: 1px solid #fafafa!important;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)!important;
+    } 
+}
