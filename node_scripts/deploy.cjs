@@ -32,28 +32,28 @@ simpleGit().cwd(QBV2_QUICKMAINT_PATH).status()
             // Cleaning target path
             fs.emptyDirSync(QBV2_QUICKMAINT_PATH);
 
-            // Remove unused sw.js
-            fs.removeSync(DIST_PATH+'sw.js');
+            // Remove unused dev-sw.js
+            fs.removeSync(DIST_PATH+'dev-sw.js');
 
-            // Fix call to quickmaint-sw.js
+            // Fix call to quickmaint-dev-sw.js
             let app_js = fs.readdirSync(DIST_PATH+'assets').filter(fn => fn.startsWith('app-'));
-            console.log("Fix call to quickmaint-sw.js");
+            console.log("Fix call to quickmaint-dev-sw.js");
             app_js.forEach((file) => {
                 replace({
-                    regex: "/quickmaint/quickmaint-sw.js",
-                    replacement: "/quickmaint-sw.js",
+                    regex: "/quickmaint/quickmaint-dev-sw.js",
+                    replacement: "/quickmaint-dev-sw.js",
                     paths: [DIST_PATH+'assets/'+file],
                     recursive: true,
                     silent: true,
                 });
             });
 
-            // Copying quickmaint-sw.js to Quickbrain v2 public path
-            fs.copyFile(DIST_PATH+'quickmaint-sw.js', QBV2_PUBLIC_PATH+'quickmaint-sw.js', function (err) {
+            // Copying quickmaint-dev-sw.js to Quickbrain v2 public path
+            fs.copyFile(DIST_PATH+'quickmaint-dev-sw.js', QBV2_PUBLIC_PATH+'quickmaint-dev-sw.js', function (err) {
                 if (result.error) {
-                    throw "Error : Cannot copy quickmaint-sw.js to Quickbrain v2 public path"
+                    throw "Error : Cannot copy quickmaint-dev-sw.js to Quickbrain v2 public path"
                 }
-                console.log("quickmaint-sw.js was deployed to : " + QBV2_PUBLIC_PATH);
+                console.log("quickmaint-dev-sw.js was deployed to : " + QBV2_PUBLIC_PATH);
             });
 
             // Copying builded quickmaint app to target path
@@ -63,8 +63,8 @@ simpleGit().cwd(QBV2_QUICKMAINT_PATH).status()
                 }
                 console.log("quickmaint was deployed to : " + QBV2_QUICKMAINT_PATH);
 
-                // Remove unused quickmaint-sw.js
-                fs.removeSync(QBV2_QUICKMAINT_PATH+'quickmaint-sw.js');
+                // Remove unused quickmaint-dev-sw.js
+                fs.removeSync(QBV2_QUICKMAINT_PATH+'quickmaint-dev-sw.js');
             });
 
 

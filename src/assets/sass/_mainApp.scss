@@ -1,0 +1,9 @@
+@import "variables";
+#mainAppBody {
+  background-color: $lightBackGround;
+  color: $lightTextColor;
+  padding-top: 57px;
+  padding-bottom: 52px;
+  height: auto;
+  min-height: calc(100vh - ($headerHeight + $headerBorderHeight + $footerHeight));
+}

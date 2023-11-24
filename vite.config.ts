@@ -1,12 +1,14 @@
-import {BuildOptions, defineConfig, loadEnv, ServerOptions, splitVendorChunkPlugin} from 'vite'
+import {BuildOptions, defineConfig, ServerOptions, splitVendorChunkPlugin, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import {VitePWA, VitePWAOptions} from "vite-plugin-pwa";
 import path from "path";
 
-let buildProdMod = false;
+let buildProdMod = true;
 let isProductionMode = !process.env.SW_DEV;
 let publicPath = "/";
 
+// Load .env datas
+process.env = {...process.env, ...loadEnv(process.env.NODE_ENV, process.cwd())};
 process.env.NODE_ENV = !process.env.SW_DEV ? 'production' : 'dev'
 
 let SRV_options: Partial<ServerOptions> = {
@@ -14,13 +16,12 @@ let SRV_options: Partial<ServerOptions> = {
     host: "localhost",
     port: 80,
 }
-
 if (isProductionMode) {
     SRV_options = {
         https : true,
         port: 443,
     };
-    publicPath = "/quickmaint/";
+    publicPath = process.env.VITE_APP_URL;
 }
 
 let BUILD_options: Partial<BuildOptions> = {
@@ -37,20 +38,22 @@ let BUILD_options: Partial<BuildOptions> = {
     },
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: isProductionMode && buildProdMod,
+    sourcemap: false,
     minify: isProductionMode && buildProdMod,
     cssMinify: isProductionMode && buildProdMod,
     cssCodeSplit: isProductionMode && buildProdMod,
-
+    target:"esnext",
 }
 
 let PWA_options: Partial<VitePWAOptions> = {
     mode: process.env.SW_DEV ? 'development':'production',
-    strategies: 'injectManifest',
-    injectManifest : {
+    strategies: null,
+    filename: "quickmaint-sw.js",
+    srcDir: "src",
+    /*injectManifest : {
         swSrc: "quickmaint-sw.js",
         swDest: "quickmaint-sw.js",
-    },
+    },*/
     injectRegister: null,
     base: publicPath,
     scope: publicPath,
@@ -58,7 +61,7 @@ let PWA_options: Partial<VitePWAOptions> = {
     workbox: {
         cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2}'],
-        sourcemap: true,
+        sourcemap: false,
     },
     manifest: {
         name: "QuickMaint",
@@ -66,6 +69,7 @@ let PWA_options: Partial<VitePWAOptions> = {
         description: "The simpliest access to Quickbrain v2 Maintenance Module",
         theme_color: "#000",
         background_color: "#FFFFFF",
+        display_override: ["standalone","window-controls-overlay"],
         display: "standalone",
         icons: [
             {"src": "./img/icons/16x16.png","sizes": "16x16","type": "image/png","purpose": "any"},
@@ -78,13 +82,15 @@ let PWA_options: Partial<VitePWAOptions> = {
             {"src": "./img/icons/150x150.png","sizes": "150x150","type": "image/png","purpose": "any"},
             {"src": "./img/icons/192x192.png","sizes": "192x192","type": "image/png","purpose": "any"},
             {"src": "./img/icons/512x512.png","sizes": "512x512","type": "image/png","purpose": "any"}
+        ],
+        screenshots: [
+            { "src": "./img/screenshot_wide.png", "sizes": "484x463", "type": "image/png", "form_factor": "wide", "label": "QuickMaint" },
+            { "src": "./img/screenshot_narrow.png", "sizes": "440x647", "type": "image/png", "form_factor": "narrow", "label": "QuickMaint" },
         ]
     },
     devOptions: {
         enabled: !isProductionMode,
         type: 'module',
-        navigateFallback: 'index.html',
-        suppressWarnings: isProductionMode,
     },
     selfDestroying: true,
     minify: isProductionMode
@@ -106,5 +112,5 @@ export default defineConfig({
     appType: "spa",
     base: publicPath,
     server: SRV_options,
-    build: BUILD_options
+    build: BUILD_options,
 })

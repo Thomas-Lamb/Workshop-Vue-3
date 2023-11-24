@@ -1,34 +1,38 @@
 <template>
-      <div id="spinnerApp"></div>
-      <ToastComponent
-          ref="codeEmpty"
-          id="main_toast"
-          title="Error"
-          :position="position"
-          cssClass="e-toast-danger"
-      ></ToastComponent>
-      <ToastComponent
-          ref="codeEmpty"
-          id="center_toast"
-          title="Success"
-          :showCloseButton=true
-          :position="positionCenter"
-          cssClass="e-toast-danger"
-      ></ToastComponent>
-      <ToastComponent
-          ref='swToast'
-          id='sw_Toast'
-          :position="positionCenter"
-          :showCloseButton=true
-          :animation='animation'
-          :buttons='button'
-      ></ToastComponent>
-      <Login url-login="https://dev-qbv2-tla.ennovia.local/api/login"/>
+    <div id="spinnerApp"></div>
+    <ejs-toast
+      ref="codeEmpty"
+      id="main_toast"
+      title="Error"
+      :position="position"
+      cssClass="e-toast-danger"
+    ></ejs-toast>
+    <ejs-toast
+      ref="codeEmpty"
+      id="center_toast"
+      title="Success"
+      :showCloseButton=true
+      :position="positionCenter"
+      cssClass="e-toast-danger"
+    ></ejs-toast>
+    <ejs-toast
+      ref='swToast'
+      id='sw_Toast'
+      :position="positionCenter"
+      :showCloseButton=true
+      :animation='animation'
+      :buttons='button'
+    ></ejs-toast>
+    <router-view
+        :key="routerKey"
+    ></router-view>
 </template>
 
 <script setup lang="ts">
-import Login from "./components/login/Login.vue";
-import { ToastComponent } from "@syncfusion/ej2-vue-notifications";
+import { ToastComponent as ejsToast} from "@syncfusion/ej2-vue-notifications";
+import {useLaravelEchoStore} from "@/stores/laravel-echo.ts";
+import {useAppConfigStore} from "@/stores/app-config.ts";
+import {useAuthStore} from "@/components/login/store/authStore.ts";
 
 let positionCenter : any = { X: "Center", Y: "Top"}
 let position : any = { X: "Right", Y: "Top"}
@@ -44,20 +48,26 @@ let button: any =
     }, {
         model: { content: "reply" }
     }]
+let routerKey = 0;
+
+window.onfocus = function () {
+    console.log('sur la page')
+    useAppConfigStore().setIsOnPage(true)
+};
+
+window.onblur = function () {
+    console.log("en dehors de la page")
+    useAppConfigStore().setIsOnPage(false)
+};
+
+let laravelEcho = useLaravelEchoStore()
+useAppConfigStore()
+useAuthStore().storeSessionInIndexDb()
 
 </script>
 
 <style>
-/*@import '@/assets/sass/app.scss';
-@import '../node_modules/pdfjs-dist/web/pdf_viewer.css';*/
-
-#app {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
-
+@import './assets/sass/app.scss';
 
 @media print
 {

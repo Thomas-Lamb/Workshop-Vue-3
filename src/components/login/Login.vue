@@ -2,108 +2,33 @@
     <div id="boxLogin" class="">
         <div id="spinnerLogin"></div>
         <div  class="control_wrapper e-card" id="wrapper-login">
-            <!-- Initialize Uploader -->
             <div class="e-card-stacked">
-                <div class="e-card-content m-2">
-                    <form v-if="!data.forgotPassword" id="form-login" class="e-lib e-formvalidator" @submit.prevent>
-                        <h3 class="form-title">
-                            <img id="logo-login"
-                                 src="/img/icons/logo-text-sombre.svg"
-                                 alt="QuickMaint"/>
-                        </h3>
-                        <div id="input-container">
-                            <div class="input-login form-group">
-                                <div class="e-float-input">
-                                    <input type="text" v-model="data.login" required />
-                                    <span class="e-float-line"> </span>
-                                    <label class="e-float-text">Identifiant</label>
-                                </div>
-<!--                                <div id="loginError" class="e-error" v-if="data.errorLogin">Un identifiant est requis</div>-->
-                            </div>
-                            <div class="input-login">
-                                <div class="e-float-input form-group">
-                                    <input type="password" v-model="data.password" required />
-                                    <span class="e-float-line"> </span>
-                                    <label class="e-float-text">Mot de passe</label>
-                                </div>
-<!--                                <div id="passwordError" class="e-error" v-if="data.errorPassword" >Un mot de passe est requis</div>-->
-                            </div>
-                        </div>
-                        <div id="credentialsError" class="e-error" v-if="data.errorCredentials">Identifiant ou mot de passe incorrect</div>
-                        <div class="first-btns">
-                            <div class="w-50">
-                                <div class="submit-btn mt-3">
-                                    <ejs-button type="button" id="recup-password" cssClass='e-link e-small' style="padding: 0px; margin-left: 10px;"
-                                                @click="forgotPassword">
-                                        Mot de passe oublié
-                                    </ejs-button>
-                                </div>
-                            </div>
-                            <div class="w-50">
-                                <div class="submit-btn mt-3">
-                                    <button class="e-btn" id="submit-btn" @click="onFormSubmit" style="margin-right: 10px">Se connecter</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="or-container mt-5 mb-3">
-                            <div class="line-separator"></div>
-                            <div class="or-label">Se connecter avec :</div>
-                            <div class="line-separator"></div>
-                        </div>
+                <div class="e-card-content">
+                    <form-login
+                        v-if="!data.forgotPassword && !authStore.showSecondAuthPopup"
+                        :data="data"
+                        :src-img="srcImg"
+                        @forgot-password="forgotPassword"
+                        @on-form-submit="onFormSubmit"
+                        @oauth-google="oauthGoogle"
+                        @oauth-microsoft="oauthMicrosoft"
+                        :function-login="functionLogin"
+                    ></form-login>
 
+                    <form-forgot-password
+                        v-if="data.forgotPassword"
+                        :data="data"
+                        :src-img="srcImg"
+                        @forgot-password="forgotPassword"
+                        @submit-forgot-password="submitForgotPassword"
+                    ></form-forgot-password>
 
-                        <div class="d-flex justify-content-center ">
-                            <div class="w-50 text-center">
-                                <ButtonComponent
-                                    cssClass='e-btn'
-                                    id="oauthGoogle">
-                                        <i class="sf-icon-google"></i> Google
-                                </ButtonComponent>
-                            </div>
-                            <div class="w-50 text-center">
-                                <ButtonComponent
-                                cssClass='e-btn'
-                                id="oauthMicrosoft">
-                                    <i class="sf-icon-microsoft" ></i> Microsoft
-                                </ButtonComponent>
-                            </div>
-                        </div>-->
-
-                    </form>
-
-
-                    <form v-if="data.forgotPassword" id="form-forgot-password" class="e-lib e-formvalidator" @submit.prevent>
-                        <h3 class="form-title">
-                            <img id="logo-login"
-                                 src="/img/icons/logo-text-sombre.svg"
-                                 alt="QuickMaint"/>
-                        </h3>
-                        <div id="input-container">
-                            <div class="input-login form-group">
-                                <div class="e-float-input">
-                                    <input type="text" v-model="data.login" required />
-                                    <span class="e-float-line"> </span>
-                                    <label class="e-float-text">Identifiant</label>
-                                </div>
-<!--                                <div id="loginError" class="e-error" v-if="data.errorLogin">Un identifiant est requis</div>-->
-                            </div>
-                        </div>
-
-                        <div class="first-btns">
-                            <div class="w-50">
-                                <div class="submit-btn mt-3">
-                                    <ejs-button @click="props.functionSetSession" type="button" id="recup-password" cssClass='e-link e-small' style="padding: 0px; margin-left: 10px;">
-                                        Annuler
-                                    </ejs-button>
-                                </div>
-                            </div>
-                            <div class="w-50">
-                                <div class="submit-btn mt-3">
-                                    <button class="e-btn" id="submit-btn" @click="" style="margin-right: 10px">Changer le mot de passe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <second-auth-popup
+                        v-if="authStore.showSecondAuthPopup"
+                        :token="authStore.secondAuthToken"
+                        @close="closeSecondAuthPopup"
+                        @logged="secondAuthLogged"
+                    ></second-auth-popup>
                 </div>
             </div>
         </div>
@@ -111,38 +36,46 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonComponent as EjsButton } from "@syncfusion/ej2-vue-buttons";
-import { onMounted, ref, reactive } from "vue";
-import { hideSpinner, showSpinner} from "@syncfusion/ej2-popups";
+import {onMounted, reactive, watchEffect} from "vue";
+import {createSpinner, DialogUtility, hideSpinner, showSpinner} from "@syncfusion/ej2-popups";
 import axios from "axios";
-import { setSession } from "./functions/functionSetSession.ts";
 import { Data } from "./interfaces/interfaceData.ts"
-import { Credentials, DataUser } from "./interfaces/interfaceLogin.ts"
-
-const emit = defineEmits(['fncSetSession', 'needRgbd', 'passwordNeedUpdate', 'passwordValidationDateExpired', 'secondAuthToken'])
+import { Credentials } from "./interfaces/interfaceLogin.ts"
+import { useAuthStore } from "./store/authStore.ts";
+import secondAuthPopup from "./templates/secondAuthPopup.vue";
+import FormLogin from "./templates/FormLogin.vue";
+import FormForgotPassword from "./templates/FormForgotPassword.vue";
 
 interface Props {
-    urlLogin?: string,
-    functionSetSession?: Function
+    functionLogin?: Function,
+    primaryColor?: string,
+    secondaryColor?: string,
+    srcImg?: string,
+    authStore?: any
 }
 
-
 const props = withDefaults(defineProps<Props>(), {
-    urlLogin: 'https://dev-qbv2-tla.ennovia.local/api/login',//todo récupérer l'url de base dunavigateur en cours
-    functionSetSession: setSession
+    authStore: useAuthStore(),
+    functionLogin: useAuthStore().login,
+    primaryColor: "#D66D26",
+    secondaryColor: "#D3D3D3",
+    srcImg: "/img/icons/logo-text-claire.svg",
 })
 
 const data = reactive<Data>({
     login : "",
     password : "",
+    forgotPasswordLogin: "",
     errorLogin : false,
     errorPassword : false,
     errorCredentials : false,
-    forgotPassword: false
-})
-
-const dataUser: DataUser = ({
-    token : "",
+    forgotPassword: false,
+    spinnerLogin: null,
+    showSecondAuthPopup: false,
+    secondAuthToken: null,
+    dialogElement: null,
+    googleAuthDisabled: true, // todo récupérer l'environement (mix_config)
+    microsoftAuthDisabled: true, // todo récupérer l'environement (mix_config)
 })
 
 onMounted(() => {
@@ -151,25 +84,26 @@ onMounted(() => {
 
     inputElement.forEach((item) => {
         item.addEventListener("focus", function (this: Element) {
-            if (this.parentNode) {
-                this.parentNode.classList.add('e-input-focus');
-            }
+                this.parentElement!.classList.add('e-input-focus');
         });
         item.addEventListener("blur", function (this: Element) {
-            if (this.parentNode) {
-                this.parentNode.classList.remove('e-input-focus');
-            }
-        })
+                this.parentElement!.classList.remove('e-input-focus');
+        });
     })
+    data.spinnerLogin = document.getElementById("spinnerLogin");
+    createSpinner({
+        target: data.spinnerLogin!
+    });
 })
 
 function showLoginSpinner(){
-    let spinnerApp: HTMLElement | null = document.getElementById("spinnerLogin")
-    if (spinnerApp) showSpinner(spinnerApp)
+    showSpinner(data.spinnerLogin!)
 }
 function hideLoginSpinner(){
-    let spinnerApp: HTMLElement | null = document.getElementById("spinnerLogin")
-    if (spinnerApp) hideSpinner(spinnerApp)
+    hideSpinner(data.spinnerLogin!)
+}
+function setErrorCredentials(){
+    data.errorCredentials = true;
 }
 
 function onFormSubmit() {
@@ -180,81 +114,142 @@ function onFormSubmit() {
     if (data.password === "") {data.errorPassword = true}
     if (!data.errorLogin && !data.errorPassword) {
         let credentials: Credentials = {login: data.login, password: data.password};
-        login(credentials)
+        props.functionLogin(credentials, showLoginSpinner, hideLoginSpinner, setErrorCredentials)
+        // if (sessionStorage.getItem('token'))
     }
 }
 
-function checkUserIsLog(token: any) {
-    return dataUser.token = token;
+function submitForgotPassword() {
+    showLoginSpinner();
+    let dataUser: object = { login: data.forgotPasswordLogin};
+    axios.post(api_path+"forgotPassword", dataUser)
+        .then(() => {
+            hideLoginSpinner();
+            showCenterToast(
+                trans.get('__JSON__.main.modal.toast.success.email'),
+                "e-toast-success",
+                trans.get('__JSON__.user.toast.success.mailChangePassword'),
+            );
+            forgotPassword();
+        })
+        .catch(error => {
+            hideLoginSpinner();
+            console.error(error)
+        });
+    data.forgotPasswordLogin = "";
 }
 
-function login(credentials: Credentials) {
-    // let router = dataLogin.router;
-    axios.post(
-        props.urlLogin, {
-            login: credentials.login,
-            password: credentials.password,
-        }
-    ).then(({ data }) => {
-        console.log(data)
 
-        // that.setLocalStorageInfo(data); todo à voir, certainement index db
-        //Need new password
-        if(data.user.ip_terms_validation === null) {
-            emit('needRgbd');
-        }
-        if(data.passwordNeedUpdate){
-            //Show popup to update the password to the current parameters
-            emit("passwordNeedUpdate");
-            return;
-        }
-        if(data.validationDateExpired){
-            //Show popup to update the password because it has expired(renewal or not connected since a long time)
-            emit("passwordValidationDateExpired");
-            return;
-        }
-        //Two Factor Auth
-        if(data.tokenSecondAuth){
-            //Go for second auth
-            emit("secondAuthToken",data.tokenSecondAuth);
-        }else{
-            //go for direct login
-            props.functionSetSession(data)
-            checkUserIsLog(data.success.token); //todo fnc
-            if(typeof data.user.date_terms_validation == "object" || typeof data.user.ip_terms_validation == "object") {
-                sessionStorage.removeItem('isAuth');
-                // router.push({ todo mettre en place router
-                //     name: "rgpd"
-                // });
-            } else {
-                console.error('Connection par lien indisponible')
-                //todo c'est la redirection par lien vers un fichier, c'est à faire pour l'implémentation dans QB
-                // showLoginSpinner();
-                // if(this.externalSearch && this.externalSearch.type && this.externalSearch.content){
-                //     hideLoginSpinner();
-                //     if(this.externalSearch.type === "centralPanels"){
-                //         centralpanelStore.addingCentralPanels(this.externalSearch.content);
-                //         setTimeout(() => {
-                //             location.href = window.mix_config.MIX_APP_URL+'/#/'+this.externalSearch.type;
-                //         })
-                //     }else{
-                //         location.href = window.mix_config.MIX_APP_URL+'/#/'+this.externalSearch.type;
-                //     }
-                // }else{
-                //     router.push({
-                //         name: "Loading"
-                //     }).then(()=>{
-                //         hideLoginSpinner();
-                //     });
-                // }
+function getSyncfusionInstance(elementId: string, functionWanted: string){
+    let element = document.getElementById(elementId);
+    return getSyncfusionInstanceFromElement(element!, functionWanted);
+}
+
+function getSyncfusionInstanceFromElement(element: HTMLElement, functionWanted: string){
+    if(!element){
+        return null;
+    }
+    let syncfusionInstance = null;
+    let firstInstance: any = null;
+    if(element && element.ej2_instances){
+        element.ej2_instances.forEach((instance: any) => {
+            if(!firstInstance){
+                firstInstance = instance;
             }
-        }
-    }).catch(error => {
-        if(error) {
-            data.errorCredentials = true
-            console.log(error)
-        }
+            if(typeof instance[functionWanted] == "function"){
+                syncfusionInstance = instance;
+            }
+        })
+    }
+    if(!syncfusionInstance){
+        //last try if not found
+        syncfusionInstance = firstInstance;
+    }
+    return syncfusionInstance;
+}
+
+function showToastFromId(idToast: string, title: string, cssClass = "e-toast-success", content = "", timeout = 5000){
+    let toast = getSyncfusionInstance(idToast, 'show');
+    if(toast){
+        toast.show({
+            title : title,
+            content : content,
+            cssClass : cssClass,
+            timeout : timeout,
+        })
+    }
+}
+
+function showCenterToast(title: string,  cssClass = "e-toast-success", content = "", timeout = 5000){
+    showToastFromId('center_toast', title, cssClass, content, timeout);
+}
+
+function oauthGoogle(){
+    oauthAxios('GoogleOAuth'); //689
+}
+function oauthMicrosoft(){
+    oauthAxios('AzureOAuth'); //690
+}
+
+function secondAuthLogged() {
+    closeSecondAuthPopup();
+    props.authStore.secondAuthLogin({
+        dataSource: data,
+        //router: this.$router, todo quand le router sera là ajouter le router
+        spinnerOn : showLoginSpinner,
+        spinnerOff : hideLoginSpinner
     });
+}
+
+function closeSecondAuthPopup(){
+    props.authStore.setShowSecondAuthPopup(false);
+    props.authStore.secondAuthToken = false;
+}
+
+function passwordNeedUpdate(){
+    showPopupMail(trans.get("__JSON__.main.content.passwordNeedUpdate"));
+}
+function passwordValidationDateExpired(){
+    showPopupMail(trans.get("__JSON__.main.content.passwordExpired"));
+}
+function showPopupMail(content: string){
+    data.dialogElement = DialogUtility.alert({
+        title: trans.get('__JSON__.main.content.passwordRenewalNeeded'),
+        content: content,
+        okButton: { text: trans.get('__JSON__.main.modal.button.ok'), click: closePopup },
+        showCloseIcon: true,
+        closeOnEscape: true,
+        animationSettings: { effect: "Zoom" }
+    });
+}
+
+
+function closePopup(){
+    if(data.dialogElement){
+        data.dialogElement.hide();
+    }
+}
+
+function oauthAxios(provider: string){
+    axios
+        .get(api_path + "oauth_connect/"+provider)
+        .then(response => {
+            let result = response.data.result;
+            if(result === true || result === false){
+                //deployment case
+                if(response.data.result){
+                    showCenterToast(trans.get('__JSON__.connection.toast.success.test'), "e-toast-success");
+                }else{
+                    showCenterToast(trans.get('__JSON__.connection.toast.warning.test'), "e-toast-warning");
+                }
+            }else{
+                location.href = result;
+            }
+        })
+        .catch(() => {
+            hideSpinner(document.getElementById("spinnerMainConnection")!);
+            showCenterToast(trans.get('__JSON__.connection.toast.error.test'),"e-toast-danger");
+        });
 }
 
 function forgotPassword() {
@@ -262,79 +257,19 @@ function forgotPassword() {
     if (!data.forgotPassword) {data.forgotPassword = true; return;}
 }
 
+watchEffect( () => {
+    if (props.authStore.showPasswordValidationDateExpired) {
+        passwordValidationDateExpired()
+        props.authStore.showPasswordValidationDateExpired = false;
+    }
+    if (props.authStore.showPasswordNeedUpdate) {
+        passwordNeedUpdate()
+        props.authStore.showPasswordNeedUpdate = false;
+    }
+})
+
 </script>
 
 <style>
-@import "/node_modules/@syncfusion/ej2-base/styles/material.css";
-@import "/node_modules/@syncfusion/ej2-vue-inputs/styles/material.css";
-@import "/node_modules/@syncfusion/ej2-vue-buttons/styles/material.css";
-
-body {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background-image: url("@/assets/img/bg_login.png");
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-size: auto 100vh;
-    background-color: #1e222b;
-    align-items: center;
-    justify-content: center;
-}
-
-#boxLogin {
-    width: 100%;
-    height: 100vh;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#logo-login {
-    width: 100%;
-}
-
-.e-float-text {
-    color: lightgray !important;
-    text-align: left;
-}
-
-.e-float-input input {
-    border-color: lightgray;
-    color: lightgray;
-}
-.e-float-input input:hover {
-    border-color: lightgray !important;
-    color: lightgray !important;
-}
-
-.input-login {
-    padding: 5px 10px;
-}
-
-.e-float-line:before, .e-float-line:after {
-   background: #D66D26 !important;
-}
-
-#wrapper-login {
-    max-height: 600px;
-    max-width: 400px;
-}
-
-#recup-password {
-    color: #D66D26;
-}
-
-#submit-btn {
-    background-color: #D66D26;
-    color: white;
-}
-
-.first-btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 25px;
-}
 
 </style>

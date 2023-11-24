@@ -1,12 +1,10 @@
-.DS_Store
 node_modules
 dev-dist
-dist
+#dist
 dist-ssr
-public/quickmaint-sw.js
 
 # local files
-.env.local
+.env
 .env.*.local
 *.working
 *.local

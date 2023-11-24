@@ -1,0 +1,60 @@
+#footer {
+  background-color: white;
+  z-index: 99;
+  width: 100vw;
+  height: 55px;
+  position: fixed;
+  transition: .4s ease all;
+  color: #8C8C8C;
+  justify-content: left;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  font-size: 0.7em;
+
+  .footerNavButton {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top: solid 3px transparent;
+
+    .e-icons {
+      font-size: 20px;
+    }
+  }
+
+  #selector {
+    position: absolute;
+    border-top: solid 3px $quickmaintColor;
+    transition: .4s ease all;
+  }
+
+  .position-0 {
+    transform: translateX(0);
+  }
+
+  .position-1 {
+    transform: translateX(33.3vw);
+  }
+
+  .position-2 {
+    transform: translateX(66.6vw);
+  }
+
+  .selected {
+    color: $lightTextBlack;
+  }
+
+  #wrapper-notification {
+    display: inline-block;
+    position: relative;
+  }
+
+  #notification-indicator {
+    top: -5px;
+  }
+}

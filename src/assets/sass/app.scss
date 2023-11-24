@@ -1,0 +1,43 @@
+// Variables
+@import "variables";
+
+// Fonts
+//@import "fonts";
+
+// Vendors
+//@import "~bootstrap/scss/bootstrap";
+//@import "~toastr/toastr";
+//@import "~animate.css/animate.css";
+//@import "~leaflet/dist/leaflet.css";
+//@import "~photo-sphere-viewer/dist/photo-sphere-viewer.css";
+//@import "~photo-sphere-viewer/dist/plugins/markers.css";
+@import "./syncfusion.scss";
+
+
+// QuickMaint
+@import "body";
+@import "icons";
+@import "login";
+@import "header";
+@import "footer";
+@import "mainApp";
+@import "tasks";
+
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+@media print {
+  nav.navbar-static-side {
+    display: none;
+  }
+  body {
+    overflow: visible !important;
+  }
+  #page-wrapper {
+    margin: 0;
+  }
+}

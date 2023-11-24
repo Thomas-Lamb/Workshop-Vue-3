@@ -1,0 +1,91 @@
+
+#boxLogin {
+  width: 100%;
+  height: 100vh;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color: $lightSecondaryColor;
+
+  #wrapper-login {
+    width: 100%;
+    max-width: 410px;
+    max-height: 410px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 2px;
+  }
+
+  .login-separator {
+    width: 20%;
+  }
+
+  .sf-icon {
+    padding-right: 5px;
+  }
+}
+
+#logo-login {
+  width: 80%;
+}
+
+.e-float-text {
+  color: $lightSecondaryColor !important;
+  text-align: left;
+}
+
+.e-float-input input {
+  border-color: $lightSecondaryColor !important;
+  color: $lightSecondaryColor !important;
+}
+
+.e-float-input input:hover {
+  border-color: $lightSecondaryColor !important;
+  color: $lightSecondaryColor !important;
+}
+
+.input-login {
+  padding: 5px 10px;
+}
+
+.e-float-line:before, .e-float-line:after {
+  background: $lightPrimaryColor !important;
+}
+
+#wrapper-login {
+  max-height: 600px;
+  max-width: 400px;
+}
+
+#recup-password {
+  color: $lightPrimaryColor;
+}
+
+#submit-btn {
+  background-color: $lightPrimaryColor;
+  color: white;
+}
+
+.first-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.login-separator {
+  border: none;
+  border-bottom: 1px solid $lightSecondaryColor;
+  color: #f6dede;
+  overflow: visible;
+  text-align: center;
+  height: 1px;
+}
+
+.oauth-btn {
+  display: flex;
+  padding: 5px;
+  border-radius: 3px;
+  align-items: center;
+  text-align: center;
+}
