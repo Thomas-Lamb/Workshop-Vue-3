@@ -7,22 +7,6 @@ Please install following before starting :
 - [Vue CLI 5.0.8](https://cli.vuejs.org/)
 
 Once installed, run : `yarn install`.
-
-**For development environment** copy `.env.development.local.example` as `.env.development.local` and change parameters :
-
-| Parameter               | Description                                    | Example                          |
-|:------------------------|:-----------------------------------------------|:---------------------------------|
-| VUE_APP_QUICKDOCURL     | Development url                                | localhost                        |
-| VUE_APP_QBV2_URL        | Quickbrain v2 url                              | https://dev10-qbv2.ennovia.local |
-| VUE_APP_QBV2_ECHO_PROXY | Use proxy or not                               | true                             |
-| VUE_APP_QBV2_ECHO_PORT  | If not proxy, laravel echo port                | 6001                             |
-| QBV2_PATH               | Quickbrain v2 local path to deploy after build | ../quickbrain-v2-gitlab          |
-
-**For external PCs (not in Ennovia domain)** :
-1. ask Ennovia Support the `ssl.crt` and `ssl.key` files
-2. copy them into `resources/certs_dev` folder
-3. update `.env.development.local` with URL `quickdoc.crazylog-dev.local`
-
 ---
 ## Yarn actions
 
